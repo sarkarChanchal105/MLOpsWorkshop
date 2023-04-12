@@ -83,8 +83,8 @@ Resources:
             build:
               commands:
                 - echo "Running training.py"
-                - cd source
-                - python ml-ops/training.py "${SagemakerRole.Arn}" "${DataBucket}" "${AWS::StackName}" $CODEBUILD_RESOLVED_SOURCE_VERSION
+                - cd ml-ops/source
+                - python training.py "${SagemakerRole.Arn}" "${DataBucket}" "${AWS::StackName}" $CODEBUILD_RESOLVED_SOURCE_VERSION
             post_build:
               commands:
                 - echo "Cleaning"
