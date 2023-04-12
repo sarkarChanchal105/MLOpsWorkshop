@@ -79,12 +79,12 @@ Resources:
               commands:
                 - echo "Installing requirements"
                 - pip install --upgrade pip
-                - pip install -r source/requirements.txt
+                - pip install -r ml-ops/source/requirements.txt
             build:
               commands:
                 - echo "Running training.py"
                 - cd source
-                - python training.py "${SagemakerRole.Arn}" "${DataBucket}" "${AWS::StackName}" $CODEBUILD_RESOLVED_SOURCE_VERSION
+                - python ml-ops/training.py "${SagemakerRole.Arn}" "${DataBucket}" "${AWS::StackName}" $CODEBUILD_RESOLVED_SOURCE_VERSION
             post_build:
               commands:
                 - echo "Cleaning"
@@ -118,11 +118,11 @@ Resources:
               commands:
                 - echo "Installing requirements"
                 - pip install --upgrade pip
-                - pip install -r source/requirements.txt
+                - pip install -r ml-ops/source/requirements.txt
             build:
               commands:
               - echo "Running test.py"
-              - python source/test.py "${AWS::StackName}" $CODEBUILD_RESOLVED_SOURCE_VERSION
+              - python ml-ops/source/test.py "${AWS::StackName}" $CODEBUILD_RESOLVED_SOURCE_VERSION
       TimeoutInMinutes: 30
 
 
